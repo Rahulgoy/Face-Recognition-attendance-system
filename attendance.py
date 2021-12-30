@@ -42,7 +42,7 @@ try:
     with open('face_names.pkl','rb') as f: face_name = pickle.load(f)
     with open('encodings.pkl','rb') as f: encodeListKnown = pickle.load(f)
     print("Try block")
-    if len(face_name)<len(classNames):
+    if len(face_name)!=len(classNames):
         encodeListKnown = findencodings(images)
         classNames=face_name
 except:
@@ -82,7 +82,7 @@ def markAttendance(name):
 # print(data_new)
 
 
-print(encodeListKnown)
+# print(encodeListKnown)
 print("Encoding Complete")
 
 cap = cv2.VideoCapture(0)
