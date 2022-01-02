@@ -42,9 +42,12 @@ try:
     with open('face_names.pkl','rb') as f: face_name = pickle.load(f)
     with open('encodings.pkl','rb') as f: encodeListKnown = pickle.load(f)
     print("Try block")
-    if len(face_name)!=len(classNames):
+    if len(face_name)<len(classNames):
         encodeListKnown = findencodings(images)
-        classNames=face_name
+        with open('face_names.pkl','wb') as f: 
+            pickle.dump(classNames, f)
+        with open('encodings.pkl','wb') as f: 
+            pickle.dump(encodeListKnown, f)
 except:
     print("except block")
     encodeListKnown = findencodings(images)
@@ -90,6 +93,7 @@ cap = cv2.VideoCapture(0)
 while True:
     ret, img = cap.read()
     # img = cv2.imread("Rahul.jpeg")
+    # img = cv2.imread("ronaldo.jpg")
     red_img = cv2.resize(img, (0,0),None,0.25,0.25)
     red_img = cv2.cvtColor(red_img,cv2.COLOR_BGR2RGB)
 
